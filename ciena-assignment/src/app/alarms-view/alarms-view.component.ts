@@ -28,15 +28,14 @@ export class AlarmsViewComponent implements OnInit {
 
     ngOnInit() {
         this.httpClient.get("assets/alarms.json").subscribe(data => {
-            console.log(data)
             this.alarms = data;
-
             this.generateComputedAlarms();
         });
     }
 
     private generateComputedAlarms() {
         this.computedAlarms = [];
+        this.globalCheckbox = false;
         for (const alarm of this.alarms.items) {
             if (this.showSeverityColors || this.selectedTab === alarm["condition-severity"].toLowerCase()) {
                 this.computedAlarms.push({
@@ -76,7 +75,19 @@ export class AlarmsViewComponent implements OnInit {
     }
 
     onRowCheckboxChange(event: any) {
-        if (!event.currentTarget.checked) this.globalCheckbox = false;
+        if (event.currentTarget.checked) {
+            let isAllChecked = true;
+            for (const alarm of this.computedAlarms) {
+                if (!alarm.isChecked) {
+                    isAllChecked = false;
+                    break;
+                }
+            }
+            this.globalCheckbox = isAllChecked;
+        }
+        else {
+            this.globalCheckbox = false;
+        }
     }
 
     get showSeverityColors(): boolean {
