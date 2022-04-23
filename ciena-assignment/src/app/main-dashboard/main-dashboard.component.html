@@ -1,32 +1,4 @@
-<div class="header">
-    <div class="container">
-        <div class="header-flex-container">
-            <div class="space-right">
-                <img src="/assets/img/placeholder_img.png" alt="Placeholder image" class="thumbnail">
-            </div>
-            <div>
-                <p class="mb-1">Blueplanet</p>
-            </div>
-            <div class="filler"></div>
-            <div class="space-right">
-                <p class="mb-1">Welcome &lt;MyUserName&gt;</p>
-            </div>
-            <div class="header-button header-flex-container">
-                <span class="material-symbols-outlined">notifications</span>
-                <span class="badge alert-primary badge-display">1</span>
-            </div>
-            <div class="header-button header-flex-container space-right">
-                <span class="material-symbols-outlined">person</span>
-            </div>
-            <div class="space-right">
-                <p class="mb-1">|</p>
-            </div>
-            <div class="header-button header-flex-container" (click)="triggerModal(modalData)">
-                <p class="mb-1">Logout</p>
-            </div>
-        </div>
-    </div>
-</div>
+<app-dashboard-header></app-dashboard-header>
 <div class="container">
     <div class="flex-container header-offset">
         <button type="button" class="btn btn-primary navigation-button-width">
@@ -44,18 +16,3 @@
         </button>
     </div>
 </div>
-
-<!-- Modal -->
-<ng-template #modalData let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Logging out</h4>
-    </div>
-    <div class="modal-body">
-        <p><strong>Are you sure you want to leave the site?</strong></p>
-        <p>The current tab will be closed.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="modal.close()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="onConfirmLogoutClick()">Logout</button>
-    </div>
-</ng-template>

@@ -1,0 +1,44 @@
+@import ../../styles
+    
+.header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 89
+    height: $header-height
+    background-color: $main-dark-color
+    color: #DDDDDD
+    font-size: 20px
+
+    .thumbnail
+        object-fit: contain
+        height: 60px
+        border-style: outset
+
+    .header-flex-container
+        display: flex
+        align-items: center
+        height: $header-height
+
+    .space-right
+        margin-right: 10px
+
+    .filler
+        flex-grow: 1
+
+    .header-button
+        position: relative
+        height: 100%
+        padding-left: 10px
+        padding-right: 10px
+        cursor: pointer
+        transition: color .2s ease-out,background .2s ease-out
+        &:hover
+            background-color: darken($main-dark-color, 10%)
+
+    .badge-display
+        position: absolute
+        bottom: 15px
+        right: 6px
+        padding: 1px 2px
