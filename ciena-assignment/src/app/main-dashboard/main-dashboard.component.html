@@ -28,12 +28,20 @@
     </div>
 </div>
 <div class="container">
-    <button type="button" class="btn btn-primary header-offset">
-        Button
-    </button>
-    <div class="flex-container">
-
+    <div class="flex-container header-offset">
+        <button type="button" class="btn btn-primary navigation-button-width">
+            Home
+        </button>
         <div class="filler"></div>
+        <div ngbDropdown class="d-inline-block space-right">
+            <button type="button" class="btn btn-outline-primary navigation-button-width" id="dropdownBasic1" ngbDropdownToggle>Menu</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button *ngFor="let item of menuItems" ngbDropdownItem (click)="onMenuItemClick(item)">{{ item }}</button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary navigation-button-width">
+            Back
+        </button>
     </div>
 </div>
 

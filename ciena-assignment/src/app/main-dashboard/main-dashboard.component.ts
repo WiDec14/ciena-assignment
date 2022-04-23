@@ -8,9 +8,12 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MainDashboardComponent implements OnInit {
 
+    menuItems: String[];
+
     constructor(private modalService: NgbModal) { }
 
     ngOnInit() {
+        this.menuItems = ['Item 1', 'Item 2', 'Item 3'];
     }
 
     triggerModal(content: HTMLElement) {
@@ -19,6 +22,10 @@ export class MainDashboardComponent implements OnInit {
 
     onConfirmLogoutClick() {
         window.close();
+    }
+
+    onMenuItemClick(item: String) {
+        alert(item + " has been clicked in the menu.");
     }
 
 }
