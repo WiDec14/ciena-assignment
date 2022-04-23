@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainDashboardComponent implements OnInit {
 
-    menuItems: String[];
+    menuItems: string[];
 
     constructor() { }
 
@@ -15,7 +15,7 @@ export class MainDashboardComponent implements OnInit {
         this.menuItems = ['Item 1', 'Item 2', 'Item 3'];
     }
 
-    onMenuItemClick(item: String) {
+    onMenuItemClick(item: string) {
         alert(item + " has been clicked in the menu.");
     }
 

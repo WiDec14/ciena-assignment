@@ -1,0 +1,11 @@
+$critical: #e71d1d
+$major: #ef8e00
+$minor: #ddd326
+$warning: #7d85b2
+$undefined: #99b4ba
+
+$colors: (critical: $critical, major: $major, minor: $minor, warning: $warning, undefined: $undefined)
+
+@each $key, $val in $colors
+    .bg-#{$key}
+        background-color: $val
