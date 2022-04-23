@@ -16,7 +16,7 @@
 <table class="table table-bordered">
     <thead>
         <tr class="table-primary">
-            <th scope="col"><input type="checkbox" class="form-check-input"></th>
+            <th scope="col"><input type="checkbox" class="form-check-input" [(ngModel)]="globalCheckbox" (change)="onGlobalCheckboxChange()"></th>
             <th scope="col">Severity</th>
             <th scope="col">Description</th>
             <th scope="col">Node type</th>
@@ -27,7 +27,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let alarm of computedAlarms">
-            <th scope="row"><input type="checkbox" class="form-check-input" [value]="alarm.isChecked"></th>
+            <th scope="row"><input type="checkbox" class="form-check-input" [(ngModel)]="alarm.isChecked" (change)="onRowCheckboxChange($event)"></th>
             <td [ngClass]="{
                 'bg-critical': alarm.severity.toLowerCase() === 'critical' && showSeverityColors,
                 'bg-major': alarm.severity.toLowerCase() === 'major' && showSeverityColors,

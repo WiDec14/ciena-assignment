@@ -22,6 +22,8 @@ export class AlarmsViewComponent implements OnInit {
     alarms: any;
     computedAlarms: AlarmItem[] = [];
 
+    globalCheckbox = false;
+
     constructor(private httpClient: HttpClient) { }
 
     ngOnInit() {
@@ -53,10 +55,6 @@ export class AlarmsViewComponent implements OnInit {
         }
     }
 
-    onTabChange() {
-        this.generateComputedAlarms();
-    }
-
     getSeverityCount(severity: string): number {
         if (!this.alarms) return 0;
 
@@ -67,6 +65,18 @@ export class AlarmsViewComponent implements OnInit {
         }
 
         return 0;
+    }
+
+    onTabChange() {
+        this.generateComputedAlarms();
+    }
+
+    onGlobalCheckboxChange() {
+        this.computedAlarms.forEach(alarm => alarm.isChecked = this.globalCheckbox);
+    }
+
+    onRowCheckboxChange(event: any) {
+        if (!event.currentTarget.checked) this.globalCheckbox = false;
     }
 
     get showSeverityColors(): boolean {
