@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
     MainDashboardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

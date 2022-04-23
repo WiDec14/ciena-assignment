@@ -21,12 +21,33 @@
             <div class="space-right">
                 <p class="mb-1">|</p>
             </div>
-            <div class="header-button header-flex-container">
+            <div class="header-button header-flex-container" (click)="triggerModal(modalData)">
                 <p class="mb-1">Logout</p>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
+    <button type="button" class="btn btn-primary header-offset">
+        Button
+    </button>
+    <div class="flex-container">
 
+        <div class="filler"></div>
+    </div>
 </div>
+
+<!-- Modal -->
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Logging out</h4>
+    </div>
+    <div class="modal-body">
+        <p><strong>Are you sure you want to leave the site?</strong></p>
+        <p>The current tab will be closed.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="onConfirmLogoutClick()">Logout</button>
+    </div>
+</ng-template>
