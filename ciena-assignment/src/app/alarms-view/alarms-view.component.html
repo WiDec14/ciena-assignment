@@ -27,7 +27,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let alarm of computedAlarms">
-            <th scope="row"><input type="checkbox" class="form-check-input" [(ngModel)]="alarm.isChecked" (change)="onRowCheckboxChange($event)"></th>
+            <th scope="row"><input type="checkbox" class="form-check-input" [(ngModel)]="alarm.isChecked" (change)="onRowCheckboxChange($event, alarm)"></th>
             <td [ngClass]="{
                 'bg-critical': alarm.severity.toLowerCase() === 'critical' && showSeverityColors,
                 'bg-major': alarm.severity.toLowerCase() === 'major' && showSeverityColors,

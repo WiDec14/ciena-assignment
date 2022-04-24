@@ -1,15 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-interface AlarmItem {
-    isChecked: boolean,
-    severity: string,
-    description: string,
-    nodeType: string,
-    clearable: string,
-    state: string,
-    raiseTime: string,
-}
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
     selector: 'app-alarms-view',
@@ -24,7 +15,10 @@ export class AlarmsViewComponent implements OnInit {
 
     globalCheckbox = false;
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(
+        private httpClient: HttpClient,
+        private notificationsService: NotificationsService
+        ) { }
 
     ngOnInit() {
         this.httpClient.get("assets/alarms.json").subscribe(data => {
@@ -39,6 +33,7 @@ export class AlarmsViewComponent implements OnInit {
         for (const alarm of this.alarms.items) {
             if (this.showSeverityColors || this.selectedTab === alarm["condition-severity"].toLowerCase()) {
                 this.computedAlarms.push({
+                    id: alarm.id + alarm.resource,
                     isChecked: false,
                     severity: alarm["condition-severity"],
                     description: alarm["native-condition-type"],
@@ -72,9 +67,15 @@ export class AlarmsViewComponent implements OnInit {
 
     onGlobalCheckboxChange() {
         this.computedAlarms.forEach(alarm => alarm.isChecked = this.globalCheckbox);
+        if (this.globalCheckbox) {
+            this.notificationsService.replaceAll([...this.computedAlarms]);
+        }
+        else {
+            this.notificationsService.clear();
+        }
     }
 
-    onRowCheckboxChange(event: any) {
+    onRowCheckboxChange(event: any, alarm: AlarmItem) {
         if (event.currentTarget.checked) {
             let isAllChecked = true;
             for (const alarm of this.computedAlarms) {
@@ -84,9 +85,11 @@ export class AlarmsViewComponent implements OnInit {
                 }
             }
             this.globalCheckbox = isAllChecked;
+            this.notificationsService.add(alarm);
         }
         else {
             this.globalCheckbox = false;
+            this.notificationsService.remove(alarm);
         }
     }
 

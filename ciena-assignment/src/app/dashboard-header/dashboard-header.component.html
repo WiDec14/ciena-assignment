@@ -11,9 +11,13 @@
             <div class="space-right">
                 <p class="mb-1">Welcome &lt;MyUserName&gt;</p>
             </div>
-            <div class="header-button header-flex-container">
+            <div
+                class="header-button header-flex-container"
+                [ngbPopover]="popContent"
+                popoverTitle="Currently selected elements"
+            >
                 <span class="material-symbols-outlined">notifications</span>
-                <span class="badge alert-primary badge-display">1</span>
+                <span class="badge alert-primary badge-display">{{ alarms.length }}</span>
             </div>
             <div class="header-button header-flex-container space-right">
                 <span class="material-symbols-outlined">person</span>
@@ -41,4 +45,9 @@
         <button type="button" class="btn btn-danger" (click)="modal.close()">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="onConfirmLogoutClick()">Logout</button>
     </div>
+</ng-template>
+
+<ng-template #popContent>
+    <p *ngFor="let alarm of alarms" class="mb-1">&rsaquo; {{ alarm.severity }} &ndash; {{ alarm.description }} &ndash; {{ alarm.nodeType }}</p>
+    <p *ngIf="alarms.length === 0" class="m-0">No element selected</p>
 </ng-template>
