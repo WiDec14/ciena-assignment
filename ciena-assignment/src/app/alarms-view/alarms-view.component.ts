@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from '../services/notifications.service';
+import { BarChart } from '../utility/BarChart';
 
 @Component({
     selector: 'app-alarms-view',
@@ -24,6 +25,8 @@ export class AlarmsViewComponent implements OnInit {
         this.httpClient.get("assets/alarms.json").subscribe(data => {
             this.alarms = data;
             this.generateComputedAlarms();
+
+            new BarChart(document.getElementById("barChart"), this.alarms.facets["condition-severity"]);
         });
     }
 
@@ -63,6 +66,7 @@ export class AlarmsViewComponent implements OnInit {
 
     onTabChange() {
         this.generateComputedAlarms();
+        this.notificationsService.clear();
     }
 
     onGlobalCheckboxChange() {

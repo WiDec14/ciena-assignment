@@ -6,7 +6,6 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 })
 export class NotificationsService {
     selectedAlarms: BehaviorSubject<AlarmItem[]> = new BehaviorSubject<AlarmItem[]>([]);
-    //selectedAlarmsObservable: Observable<AlarmItem[]> = of(this.selectedAlarms);
 
     constructor() { }
 
@@ -20,7 +19,6 @@ export class NotificationsService {
     }
 
     remove(alarm: AlarmItem) {
-        // Remove alarm based on its raise-time, since the given json does not provide unique id.
         this.selectedAlarms.next(this.selectedAlarms.getValue().filter(item => item.id !== alarm.id));
     }
 

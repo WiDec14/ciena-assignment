@@ -18,7 +18,6 @@ export class DashboardHeaderComponent implements OnInit {
 
     ngOnInit() {
         this.notificationsService.selectedAlarms.subscribe(alarms => {
-            console.log(alarms);
             this.alarms = alarms;
         })
     }
